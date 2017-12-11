@@ -1,0 +1,65 @@
+<div id="header">
+    <a href="<%= home_path %>" class="logo">
+        <img src="<%= image_path('logo.jpg') %>" alt="">
+    </a>
+</div>
+<div class="all">
+    <div class="nav">
+        <ul>
+            <li><%= link_to "Home", home_path %></li>
+            <li><%= link_to "About", about_path %></li>
+            <li><%= link_to "Login", new_admin_session_path %></li>
+        </ul>
+    </div>
+</div>
+<div id="body">
+    <div id="featured">
+        <img src="<%= image_path('header.png') %>" alt="">
+        <div>
+            <h2>Yuk Bermusik !!!</h2><br>
+            <span>Kami menyediakan :</span>
+            <span>sewa studio band, alat musik dan dapur rekaman loh</span>
+            <span>yuk dateng aja ke Mozart Studio</span>
+            <a href="<%= about_path %>" class="more">read more</a>
+        </div>
+    </div>
+    <ul>
+        <li>
+            <a href="<%= studios_path %>">
+                <img src="<%= image_path('studioband.png') %>" alt="">
+                <span>Booking Studio</span>
+            </a>
+        </li>
+        <li>
+            <a href="alatmusik.html">
+                <img src="<%= image_path('alatmusik.png') %>" alt="">
+                <span>Penyewaan Alat Musik</span>
+            </a>
+        </li>
+        <li>
+            <a href="rekaman.html">
+                <img src="<%= image_path('studiorekaman.png') %>" alt="">
+                <span>Penyewaan Dapur Rekaman</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="footer">
+    <div>
+        <p>&copy; 2017 Achtzehn</p>
+        <!--<ul>
+            <li>
+                <a href="#http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a>
+            </li>
+            <li>
+                <a href="#http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a>
+            </li>
+            <li>
+                <a href="#http://freewebsitetemplates.com/go/googleplus/" id="googleplus">googleplus</a>
+            </li>
+            <li>
+                <a href="#http://pinterest.com/fwtemplates/" id="pinterest">pinterest</a>
+            </li>
+        </ul>-->
+    </div>
+</div>

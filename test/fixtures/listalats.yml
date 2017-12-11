@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nama_alat: MyString
+  jenis: MyString
+  tipe: MyString
+  harga_sewa: 1
+
+two:
+  nama_alat: MyString
+  jenis: MyString
+  tipe: MyString
+  harga_sewa: 1

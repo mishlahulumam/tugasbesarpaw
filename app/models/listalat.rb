@@ -1,0 +1,2 @@
+class Listalat < ApplicationRecord
+end

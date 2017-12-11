@@ -1,0 +1,72 @@
+<div id="header">
+	<a href="<%= home_path %>" class="logo">
+		<img src="<%= image_path('logo.jpg')%>">
+	</a>
+</div>
+<div class="all">
+	<div class="nav">
+		<ul>
+			<li><%= link_to "Home", home_path %></li>
+			<li><%= link_to "About", about_path %></li>
+			<li><%= link_to "Login", new_admin_session_path %></li>
+		</ul>
+	</div>
+<div id="body">
+<h1><span>Detail</span></h1>
+</div>
+<table style="margin:auto;">
+    <tr>
+    	<th style="text-align:right;font-size: 18px">Studio :</th>
+  		<td style="font-size: 18px"><%= @studio.kode %></td>
+	</tr>
+
+	<tr>
+		<th style="text-align:right;font-size: 18px">Tanggal :</th>
+  		<td style="font-size: 18px"><%= @studio.tanggal %></td>
+	</tr>
+
+	<tr>
+  		<th style="text-align:right;font-size: 18px">Waktu :</th>
+  		<td style="font-size: 18px"><%= @studio.waktu %></td>
+	</tr>
+
+	<tr>
+  		<th style="text-align:right;font-size: 18px">Nama :</th>
+  		<td style="font-size: 18px"><%= @studio.nama %></td>
+	</tr>
+
+	<tr>
+  		<th style="text-align:right;font-size: 18px">Nama Band :</th>
+  		<td style="font-size: 18px"><%= @studio.nama_band %></td>
+	</tr>
+
+	<tr>
+  		<th style="text-align:right;font-size: 18px">No. HP :</th>
+  		<td style="font-size: 18px"><%= @studio.no_hp %></td>
+	</tr>
+</table><br>
+
+<div class="act" style="width:80%;margin:auto;margin-top: 10px;text-align: center">
+<%= link_to 'Edit', edit_studio_path(@studio), class:'button' %> |
+<%= link_to 'Back', studios_path, class:'button' %>
+</div>
+</div>
+<div id="footer">
+    <div>
+        <p>&copy; 2017 Achtzehn</p>
+        <!--<ul>
+            <li>
+                <a href="#http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a>
+            </li>
+            <li>
+                <a href="#http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a>
+            </li>
+            <li>
+                <a href="#http://freewebsitetemplates.com/go/googleplus/" id="googleplus">googleplus</a>
+            </li>
+            <li>
+                <a href="#http://pinterest.com/fwtemplates/" id="pinterest">pinterest</a>
+            </li>
+        </ul>-->
+    </div>
+</div>

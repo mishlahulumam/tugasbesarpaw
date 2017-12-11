@@ -1,0 +1,55 @@
+<div id="header">
+	<a href="<%= home_path %>" class="logo">
+		<img src="<%= image_path('logo.jpg')%>">
+	</a>
+</div>
+<div class="all">
+<div class="nav">
+		<ul>
+			<li><%= link_to "Home", home_path %></li>
+			<li><%= link_to "About", about_path %></li>
+			<li><%= link_to "Login", new_admin_session_path %></li>
+		</ul>
+	</div>
+<div id="body">
+	<h1><span>Studio Band</span></h1>
+</div>
+<table class="utama">
+	<tr>
+		<th>Id</th>
+		<th>Kode</th>
+		<th>Tanggal</th>
+		<th>Waktu</th>
+		<th>Nama</th>
+		<th>Nama Band</th>
+		<th>No HP</th>
+		<th>Action</th>
+	</tr>
+
+	<% @studios.each do |s| %>
+		<tr>
+			<td><%= s.id %></td>
+			<td><%= s.kode %></td>
+			<td><%= s.tanggal %></td>
+			<td><%= s.waktu %></td>
+			<td><%= s.nama %></td>
+			<td><%= s.nama_band %></td>
+			<td><%= s.no_hp %></td>
+			<!--<td><%= s.status %></td>-->
+			<td class="act"><%= link_to 'show', studio_path(s) %> |
+			<%= link_to 'edit', edit_studio_path(s) %> |
+			<%= link_to 'delete', studio_path(s), method: :delete %></td>
+			<!--<div><%= link_to 'non active', toggle_studio_path(s), method: :patch %></div>-->
+		</tr>
+<% end %>
+</table>
+<div class="button">
+<%= link_to "Tambah Jadwal Baru", new_studio_path %>
+</div>
+<!--<%= link_to "Active Studio", active_studios_path %>-->
+</div>
+<div id="footer">
+    <div>
+        <p>&copy; 2017 Achtzehn</p>
+    </div>
+</div>

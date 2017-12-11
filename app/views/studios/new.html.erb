@@ -1,0 +1,78 @@
+<div id="header">
+	<a href="<%= home_path %>" class="logo">
+		<img src="<%= image_path('logo.jpg')%>">
+	</a>
+</div>
+<div class="all">
+	<div class="nav">
+		<ul>
+			<li><%= link_to "Home", home_path %></li>
+			<li><%= link_to "About", about_path %></li>
+			<li><%= link_to "Login", new_admin_session_path %></li>
+		</ul>
+	</div>
+<% if @studio.errors.any? %>
+	<div>
+		<% @studio.errors.full_messages.each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+<% end %>
+<div id="body">
+<h1><span>Booking Studio</span></h1>
+</div>
+<%= form_for(@studio) do |f| %>
+<div style="border:2px solid black;border-radius: 5px;width:80%;margin: auto;"><br>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :Studio %><br>
+		<%= select_tag('studio[kode]', options_for_select([['-select studio-', 1], ['STD01', 'STD01'], ['STD02', 'STD02'], ['STD03', 'STD03']],1)) %>
+	</div><br>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :Tanggal %><br>
+		<%= date_field(:studio, :tanggal) %>
+	</div><br>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :Waktu %><br>
+		<%= time_field(:studio, :waktu) %>
+	</div><br>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :Nama %><br>
+		<%= f.text_field :nama %>
+	</div><br>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :'Nama Band' %><br>
+		<%= f.text_field :nama_band %>
+	</div><br>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :'No HP' %><br>
+		<%= f.text_field :no_hp %>
+	</div>
+	<div class="button" style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.submit "Submit" %>
+	</div>
+</div>
+<% end %>
+
+<div class="button" style="width:80%;margin: auto;margin-top: 15px;">
+	<%= link_to 'Back', studios_path, class:'button' %>
+</div>
+</div>
+<div id="footer">
+    <div>
+        <p>&copy; 2017 Achtzehn</p>
+        <!--<ul>
+            <li>
+                <a href="#http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a>
+            </li>
+            <li>
+                <a href="#http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a>
+            </li>
+            <li>
+                <a href="#http://freewebsitetemplates.com/go/googleplus/" id="googleplus">googleplus</a>
+            </li>
+            <li>
+                <a href="#http://pinterest.com/fwtemplates/" id="pinterest">pinterest</a>
+            </li>
+        </ul>-->
+    </div>
+</div>
