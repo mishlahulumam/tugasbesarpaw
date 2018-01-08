@@ -1,0 +1,57 @@
+<div id="header">
+	<a href="<%= home_path %>" class="logo">
+		<img src="<%= image_path('logo.jpg')%>">
+	</a>
+</div>
+<div class="all">
+	<div class="nav">
+		<ul>
+			<li><%= link_to "Home", home_path %></li>
+			<li><%= link_to "About", about_path %></li>
+			<% if account_signed_in? %>
+                <% if current_account.status==1 %>
+                    <li><%= link_to "Manage", dashboard_path %></li>
+                <% else %>
+                    <li><%= link_to "Profil", user_path(current_account) %></li>
+                <% end %>
+            <% else %>
+                <li><%= link_to "Login", login_path %></li>
+            <% end %>
+		</ul>
+	</div>
+	<div id="body">
+		<h1><span>Semua Member</span></h1>
+	</div>
+	<table class="utama">
+	<tr>
+		<th>Id</th>
+		<th>Nama Lengkap</th>
+		<th>Username</th>
+		<th>No HP</th>
+		<th>Status</th>
+		<th>Action</th>
+	</tr>
+
+	<% @users.each do |l| %>
+		<tr>
+			<td><%= l.id %></td>
+			<td><%= l.nama %></td>
+			<td><%= l.username %></td>
+			<td><%= l.nohp %></td>
+			<td><%= l.status %></td>
+			<td class="act"><%= link_to 'show', user_path(l) %> |
+			<%= link_to 'edit', edit_user_path(l) %> |
+			<%= link_to 'delete', user_path(l), method: :delete %></td>
+		</tr>
+<% end %>
+</table>
+<div class="button">
+	<%= link_to "Tambah User", new_user_path %>
+	<%= link_to "Kembali", dashboard_path %>
+</div>
+</div>
+<div id="footer">
+    <div>
+        <p>&copy; 2017 Achtzehn</p>
+    </div>
+</div>

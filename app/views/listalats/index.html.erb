@@ -1,0 +1,79 @@
+<div id="header">
+	<a href="<%= home_path %>" class="logo">
+		<img src="<%= image_path('logo.jpg')%>">
+	</a>
+</div>
+<div class="all">
+	<div class="nav">
+		<ul>
+			<li><%= link_to "Home", home_path %></li>
+			<li><%= link_to "About", about_path %></li>
+			<% if account_signed_in? %>
+                <% if current_account.status==1 %>
+                    <li><%= link_to "Manage", dashboard_path %></li>
+                <% else %>
+                    <li><%= link_to "Profil", user_path(current_account) %></li>
+                <% end %>
+            <% else %>
+                <li><%= link_to "Login", login_path %></li>
+            <% end %>
+		</ul>
+	</div>
+	<div id="body">
+		<h1><span>List Alat</span></h1>
+	</div>
+	<table class="utama">
+	<tr>
+		<th>Id</th>
+		<th>Nama Alat</th>
+		<th>Jenis</th>
+		<th>Tipe</th>
+		<th>Harga Sewa</th>
+		<th>Tersedia</th>
+		<th>Action</th>
+	</tr>
+
+	<% @listalats.each do |l| %>
+		<tr>
+			<td><%= l.id %></td>
+			<td><%= l.nama_alat %></td>
+			<td><%= l.jenis %></td>
+			<td><%= l.tipe %></td>
+			<td><%= l.harga_sewa %></td>
+			<td><%= l.status %></td>
+			<% if account_signed_in? %>
+				<% if current_account.status==1 %>
+					<td class="act"><%= link_to 'show', listalat_path(l) %> |
+					<%= link_to 'edit', edit_listalat_path(l) %> |
+					<%= link_to 'delete', listalat_path(l), method: :delete %> | <%= link_to 'non active', toggle_listalat_path(l), method: :patch %> | <%= link_to 'active', toggle2_listalat_path(l), method: :patch %></td>
+				<% elsif current_account.status==0 %>
+					<td class="act"><%= link_to 'show', listalat_path(l) %></td>
+				<% end %>
+			<% else %>
+				<td class="act"><%= link_to 'show', listalat_path(l) %></td>
+			<% end %>
+		</tr>
+<% end %>
+</table>
+<div class="button">
+	<% if account_signed_in? %>
+	<% if current_account.status==1 %>
+	<%= link_to "Tambah Alat Baru", new_listalat_path %>
+	<% end %>
+	<% end %>
+	<%= link_to "Alat yang Tersedia", active_listalats_path %>
+	<%= link_to "Kembali", home_path %>
+</div>
+<% if account_signed_in? %>
+	<% if current_account.status!=1 %>
+	<div>
+		<h1>Ingin sewa alat? Klik <%= link_to "di sini", new_sewa_path %></h1>
+	</div>
+	<% end %>
+<% end %>
+</div>
+<div id="footer">
+    <div>
+        <p>&copy; 2017 Achtzehn</p>
+    </div>
+</div>

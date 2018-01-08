@@ -8,7 +8,15 @@
 		<ul>
 			<li><%= link_to "Home", home_path %></li>
 			<li><%= link_to "About", about_path %></li>
-			<li><%= link_to "Login", new_admin_session_path %></li>
+			<% if account_signed_in? %>
+                <% if current_account.status==1 %>
+                    <li><%= link_to "Manage", dashboard_path %></li>
+                <% else %>
+                    <li><%= link_to "Profil", user_path(current_account) %></li>
+                <% end %>
+            <% else %>
+                <li><%= link_to "Login", login_path %></li>
+            <% end %>
 		</ul>
 	</div>
 <div id="body">
@@ -27,7 +35,7 @@
 
 	<tr>
   		<th style="text-align:right;font-size: 18px">Waktu :</th>
-  		<td style="font-size: 18px"><%= @studio.waktu %></td>
+  		<td style="font-size: 18px"><%= @studio.waktu %><span> - </span><%= @studio.waktu2 %></td>
 	</tr>
 
 	<tr>
@@ -39,34 +47,25 @@
   		<th style="text-align:right;font-size: 18px">Nama Band :</th>
   		<td style="font-size: 18px"><%= @studio.nama_band %></td>
 	</tr>
-
-	<tr>
-  		<th style="text-align:right;font-size: 18px">No. HP :</th>
-  		<td style="font-size: 18px"><%= @studio.no_hp %></td>
-	</tr>
+	<% if account_signed_in? %>
+		<% if current_account.status==1 %>
+			<tr>
+  				<th style="text-align:right;font-size: 18px">No. HP :</th>
+  				<td style="font-size: 18px"><%= @studio.no_hp %></td>
+			</tr>
+		<% end %>
+	<% end %>
 </table><br>
 
 <div class="act" style="width:80%;margin:auto;margin-top: 10px;text-align: center">
-<%= link_to 'Edit', edit_studio_path(@studio), class:'button' %> |
-<%= link_to 'Back', studios_path, class:'button' %>
+<% if account_signed_in? %>
+<% if current_account.status==1 %>
+<%= link_to 'Edit', edit_studio_path(@studio), class:'button' %> | <% end %><% end %>
+<%= link_to 'Kembali', studios_path, class:'button' %>
 </div>
 </div>
 <div id="footer">
     <div>
         <p>&copy; 2017 Achtzehn</p>
-        <!--<ul>
-            <li>
-                <a href="#http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a>
-            </li>
-            <li>
-                <a href="#http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a>
-            </li>
-            <li>
-                <a href="#http://freewebsitetemplates.com/go/googleplus/" id="googleplus">googleplus</a>
-            </li>
-            <li>
-                <a href="#http://pinterest.com/fwtemplates/" id="pinterest">pinterest</a>
-            </li>
-        </ul>-->
     </div>
 </div>

@@ -5,4 +5,5 @@ class Studio < ApplicationRecord
 	validates :nama, presence: true
 	validates :nama_band, presence: true
 	validates :no_hp, presence: true
+	validates :waktu2, presence: true
 end

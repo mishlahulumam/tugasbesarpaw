@@ -8,13 +8,34 @@
         <ul>
             <li><%= link_to "Home", home_path %></li>
             <li><%= link_to "About", about_path %></li>
-            <li><%= link_to "Login", new_admin_session_path %></li>
+            <% if account_signed_in? %>
+                <% if current_account.status==1 %>
+                    <li><%= link_to "Manage", dashboard_path %></li>
+                <% else %>
+                    <li><%= link_to "Profil", user_path(current_account) %></li>
+                <% end %>
+            <% else %>
+                <li><%= link_to "Login", login_path %></li>
+            <% end %>
         </ul>
     </div>
 </div>
+
 <div id="body">
     <div id="featured">
+    <% if account_signed_in? %>
+        <% if current_account.status!=1 %>
         <img src="<%= image_path('header.png') %>" alt="">
+            <div>
+                <h2>Yuk Bermusik !!!</h2><br>
+                <span>Kami menyediakan :</span>
+                <span>sewa studio band, alat musik dan dapur rekaman loh</span>
+                <span>yuk dateng aja ke Mozart Studio</span>
+                <a href="<%= about_path %>" class="more">read more</a>
+            </div>
+        <% end %>
+    <% else %>
+    <img src="<%= image_path('header.png') %>" alt="">
         <div>
             <h2>Yuk Bermusik !!!</h2><br>
             <span>Kami menyediakan :</span>
@@ -22,6 +43,7 @@
             <span>yuk dateng aja ke Mozart Studio</span>
             <a href="<%= about_path %>" class="more">read more</a>
         </div>
+    <% end %>
     </div>
     <ul>
         <li>
@@ -31,35 +53,31 @@
             </a>
         </li>
         <li>
-            <a href="alatmusik.html">
+            <a href="<%= listalats_path %>">
                 <img src="<%= image_path('alatmusik.png') %>" alt="">
                 <span>Penyewaan Alat Musik</span>
             </a>
         </li>
         <li>
-            <a href="rekaman.html">
+            <a href="<%= tracks_path %>">
                 <img src="<%= image_path('studiorekaman.png') %>" alt="">
                 <span>Penyewaan Dapur Rekaman</span>
             </a>
         </li>
+        <% if account_signed_in? %>
+        <% if current_account.status==1 %>
+        <li>
+            <a href="<%= sewas_path %>">
+                <img src="<%= image_path('alatmusik.png') %>" alt="">
+                <span>Data Penyewaan Alat Musik</span>
+            </a>
+        </li>
+        <% end %>
+        <% end %>
     </ul>
 </div>
 <div id="footer">
     <div>
         <p>&copy; 2017 Achtzehn</p>
-        <!--<ul>
-            <li>
-                <a href="#http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a>
-            </li>
-            <li>
-                <a href="#http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a>
-            </li>
-            <li>
-                <a href="#http://freewebsitetemplates.com/go/googleplus/" id="googleplus">googleplus</a>
-            </li>
-            <li>
-                <a href="#http://pinterest.com/fwtemplates/" id="pinterest">pinterest</a>
-            </li>
-        </ul>-->
     </div>
 </div>

@@ -1,20 +1,21 @@
 class StudiosController < ApplicationController
-    #get
     def index
         @studios = Studio.all
+        if params[:search]
+            @studios = Studio.where("studios.tanggal LIKE concat('%',?,'%')",params[:search])
+        else
+            @studios = Studio.all
+        end
     end
-    
-    #get
+
     def show
         @studio = Studio.find(params[:id])
     end
-    
-    #get
+
     def new
         @studio = Studio.new
     end
-    
-    #post
+
     def create
         @studio = Studio.new(resource_params)
         if @studio.save
@@ -23,20 +24,17 @@ class StudiosController < ApplicationController
             render 'new'
         end
     end
-    
-    #get
+
     def edit
         @studio = Studio.find(params[:id])
     end
-    
-    #patch/put
+
     def update
         @studio = Studio.find(params[:id])
         @studio.update(resource_params)
         redirect_to studio_path(@studio.id)
     end
-    
-    #delete
+
     def destroy
         studio = Studio.find(params[:id])
         studio.destroy
@@ -57,6 +55,6 @@ class StudiosController < ApplicationController
 
     private
     def resource_params
-        params.require(:studio).permit(:kode, :tanggal, :waktu, :nama, :nama_band, :no_hp)
+        params.require(:studio).permit(:kode, :tanggal, :waktu, :nama, :nama_band, :no_hp, :waktu2)
     end
 end

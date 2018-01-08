@@ -20,29 +20,20 @@
 		</ul>
 	</div>
 <div id="body">
-<h1><span>Booking Studio</span></h1>
+<h1><span>Rekaman Track</span></h1>
 </div>
-<%= form_for(@studio) do |f| %>
+<%= form_for(@track) do |f| %>
 <div style="border:2px solid black;border-radius: 5px;width:80%;margin: auto;"><br>
-	<% if @studio.errors.any? %>
-	<div style="color: red;font-style: bold;text-align: center;">
-		<% @studio.errors.full_messages.each do |message| %>
+	<% if @track.errors.any? %>
+	<div style="color: red;font-style: bold;text-align: center">
+		<% @track.errors.full_messages.each do |message| %>
 			<div><%= message %></div>
 		<% end %>
 	</div>
-	<% end %>
-	<div style="text-align: center;font-size: 16px;font-weight: bold">
-		<%= f.label :Studio %><br>
-		<%= select_tag('studio[kode]', options_for_select([['-pilih studio-', ''], ['STD01', 'STD01'], ['STD02', 'STD02'], ['STD03', 'STD03']],1)) %>
-	</div><br>
+<% end %>
 	<div style="text-align: center;font-size: 16px;font-weight: bold">
 		<%= f.label :Tanggal %><br>
-		<%= date_field(:studio, :tanggal) %>
-	</div><br>
-	<div style="text-align: center;font-size: 16px;font-weight: bold">
-		<%= f.label :Waktu %><br>
-		<%= select_tag('studio[waktu]', options_for_select([['-pilih jam-', ''], ['07:00', '07:00'], ['08:00', '08:00'], ['09:00', '09:00'], ['10:00', '10:00'], ['11:00', '11:00'], ['12:00', '12:00'], ['13:00', '13:00'], ['14:00', '14:00'], ['15:00', '15:00'], ['16:00', '16:00'], ['17:00', '17:00'], ['18:00', '18:00'], ['19:00', '19:00'], ['20:00', '20:00'], ['21:00', '21:00'], ['22:00', '22:00'], ['23:00', '23:00']],1)) %><span> - </span>
-		<%= select_tag('studio[waktu2]', options_for_select([['-pilih jam-', ''], ['08:00', '08:00'], ['09:00', '09:00'], ['10:00', '10:00'], ['11:00', '11:00'], ['12:00', '12:00'], ['13:00', '13:00'], ['14:00', '14:00'], ['15:00', '15:00'], ['16:00', '16:00'], ['17:00', '17:00'], ['18:00', '18:00'], ['19:00', '19:00'], ['20:00', '20:00'], ['21:00', '21:00'], ['22:00', '22:00'], ['23:00', '23:00'], ['24:00', '24:00']],1)) %>
+		<%= f.date_field :tanggal %>
 	</div><br>
 	<div style="text-align: center;font-size: 16px;font-weight: bold">
 		<%= f.label :Nama %><br>
@@ -61,9 +52,8 @@
 	</div>
 </div>
 <% end %>
-
 <div class="button" style="width:80%;margin: auto;margin-top: 15px;">
-	<%= link_to 'Kembali', studios_path, class:'button' %>
+	<%= link_to 'Kembali', tracks_path, class:'button' %>
 </div>
 </div>
 <div id="footer">

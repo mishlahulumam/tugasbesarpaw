@@ -8,7 +8,15 @@
         <ul>
             <li><%= link_to "Home", home_path %></li>
             <li><%= link_to "About", about_path %></li>
-            <li><%= link_to "Login", new_admin_session_path %></li>
+            <% if account_signed_in? %>
+                <% if current_account.status==1 %>
+                    <li><%= link_to "Manage", dashboard_path %></li>
+                <% else %>
+                    <li><%= link_to "Profil", user_path(current_account) %></li>
+                <% end %>
+            <% else %>
+                <li><%= link_to "Login", login_path %></li>
+            <% end %>
         </ul>
     </div>
 </div>

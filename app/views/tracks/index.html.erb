@@ -17,12 +17,13 @@
             <% else %>
                 <li><%= link_to "Login", login_path %></li>
             <% end %>
+		</ul>
 	</div>
-<div id="body">
-	<h1><span>Studio Band</span></h1>
-</div>
-<div style="text-align: center">
-<%= form_tag studios_path, :method => 'get' do %>
+	<div id="body">
+		<h1><span>Rekaman Track</span></h1>
+	</div>
+	<div style="text-align: center">
+	<%= form_tag tracks_path, :method => 'get' do %>
   <p>
     <%= date_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
@@ -30,55 +31,48 @@
 <% end %>
 </div>
 <br>
-<table class="utama">
+	<table class="utama">
 	<tr>
 		<th>Id</th>
-		<th>Kode</th>
 		<th>Tanggal</th>
-		<th>Waktu</th>
 		<th>Nama</th>
 		<th>Nama Band</th>
 		<% if account_signed_in? %>
-			<% if current_account.status==1 %>
-				<th>No HP</th>
-			<% else %>
-			<% end %>
+		<% if current_account.status==1 %>
+		<th>No HP</th>
+		<% end %>
 		<% end %>
 		<th>Action</th>
 	</tr>
 
-	<% @studios.each do |s| %>
+	<% @tracks.each do |t| %>
 		<tr>
-			<td><%= s.id %></td>
-			<td><%= s.kode %></td>
-			<td><%= s.tanggal %></td>
-			<td><%= s.waktu %><span> - </span><%= s.waktu2 %></td>
-			<td><%= s.nama %></td>
-			<td><%= s.nama_band %></td>
+			<td><%= t.id %></td>
+			<td><%= t.tanggal %></td>
+			<td><%= t.nama %></td>
+			<td><%= t.nama_band %></td>
 			<% if account_signed_in? %>
-				<% if current_account.status==1 %>
-					<td><%= s.no_hp %></td>
-				<% else %>
-				<% end %>
+			<% if current_account.status==1 %>
+			<td><%= t.no_hp %></td>
+			<% end %>
 			<% end %>
 			<% if account_signed_in? %>
 				<% if current_account.status==1 %>
-					<td class="act"><%= link_to 'show', studio_path(s) %> |
-					<%= link_to 'edit', edit_studio_path(s) %> |
-					<%= link_to 'delete', studio_path(s), method: :delete %></td>
+					<td class="act"><%= link_to 'show', track_path(t) %> |
+					<%= link_to 'edit', edit_track_path(t) %> |
+					<%= link_to 'delete', track_path(t), method: :delete %></td>
 				<% else %>
-					<td class="act"><%= link_to 'show', studio_path(s) %></td>
+					<td class="act"><%= link_to 'show', track_path(t) %></td>
 				<% end %>
 			<% else %>
-				<td class="act"><%= link_to 'show', studio_path(s) %></td>
+				<td class="act"><%= link_to 'show', track_path(t) %></td>
 			<% end %>
 		</tr>
 <% end %>
 </table>
 <div class="button">
 	<% if account_signed_in? %>
-		<%= link_to "Tambah Jadwal Baru", new_studio_path %>
-	<% else %>
+	<%= link_to "Tambah Jadwal Baru", new_track_path %>
 	<% end %>
 	<%= link_to "Kembali", home_path %>
 </div>

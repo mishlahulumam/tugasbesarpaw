@@ -1,12 +1,21 @@
 language: ruby
-rvm:
-  - "2.3.3"
+sudo: enabled
+rvm: 2.3.3
 env:
   - DB=mysql
+before_install:
+  - sudo apt-get upgrade
+  - sudo apt-get update -q
+  - gem update --system
+  - gem --version
+install:
+  - bundle install --jobs=3 --retry=3
+  - gem install rails
+before_script:
+  - cp config/database.travis.yml config/database.yml
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
   - bundle exec rake
-before_script:
-  - cp config/database.travis.yml config/database.yml
+  - rails test
 bundle_args: --binstubs=./bundler_stubs

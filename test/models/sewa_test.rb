@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class StudioTest < ActiveSupport::TestCase
+class SewaTest < ActiveSupport::TestCase
 	test "the truth" do
 		assert true
 	end

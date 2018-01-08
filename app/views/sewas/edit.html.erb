@@ -1,0 +1,67 @@
+<div id="header">
+	<a href="<%= home_path %>" class="logo">
+		<img src="<%= image_path('logo.jpg')%>">
+	</a>
+</div>
+<div class="all">
+	<div class="nav">
+		<ul>
+			<li><%= link_to "Home", home_path %></li>
+			<li><%= link_to "About", about_path %></li>
+			<% if account_signed_in? %>
+                <% if current_account.status==1 %>
+                    <li><%= link_to "Manage", dashboard_path %></li>
+                <% else %>
+                    <li><%= link_to "Profil", user_path(current_account) %></li>
+                <% end %>
+            <% else %>
+                <li><%= link_to "Login", login_path %></li>
+            <% end %>
+		</ul>
+	</div>
+<div id="body">
+<h1><span>Penyewaan Alat</span></h1>
+</div>
+<%= form_for(@sewa) do |f| %>
+<div style="border:2px solid black;border-radius: 5px;width:80%;margin: auto;"><br>
+	<% if @sewa.errors.any? %>
+	<div style="color: red;font-style: bold;text-align: center">
+		<% @sewa.errors.full_messages.each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+<% end %>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :Nama %><br>
+		<%= f.text_field :nama %>
+	</div><br>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :'Universitas/Sekolah' %><br>
+		<%= f.text_field :univ %>
+	</div><br>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :'No HP' %><br>
+		<%= f.text_field :no_hp %>
+	</div><br>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :'Alat yang Disewa' %><br>
+		<%= select_tag('sewa[alat]', options_from_collection_for_select(@listalat=Listalat.where(status: 1), 'nama_alat', 'nama_alat')) %>
+	</div><br>
+	<div style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.label :'Jaminan' %><br>
+		<%= select_tag('sewa[jaminan]', options_for_select([['-pilih jaminan-', ''], ['KTP', 'KTP'], ['SIM', 'SIM'], ['KTM/Kartu Pelajar', 'KTM/Kartu Pelajar']],1)) %>
+	</div><br>
+	<div class="button" style="text-align: center;font-size: 16px;font-weight: bold">
+		<%= f.submit "Submit" %>
+	</div>
+</div>
+<% end %>
+<div class="button" style="width:80%;margin: auto;margin-top: 15px;">
+	<%= link_to 'Kembali', sewas_path, class:'button' %>
+</div>
+</div>
+<div id="footer">
+    <div>
+        <p>&copy; 2017 Achtzehn</p>
+    </div>
+</div>
